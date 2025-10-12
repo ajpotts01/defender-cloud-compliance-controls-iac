@@ -1,0 +1,46 @@
+name: CI > Terraform
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "infrastructure/terraform/**"
+      - ".github/workflows/ci-terraform.yml"
+
+permissions:
+  id-token: write
+  contents: read
+
+env:
+  TF_VERSION: "1.12.1"
+
+jobs:
+  style:
+    name: Style checks
+    runs-on: ubuntu-22.04
+
+    steps:
+      - id: checkout
+        name: Source checkout
+        uses: actions/checkout@v4
+
+      - id: setup-tf
+        name: Setup Terraform
+        uses: hashicorp/setup-terraform@main
+        with:
+          terraform_version: ${{ env.TF_VERSION }}
+
+      - id: setup-tfsec
+        name: Setup TFSec
+        run: |
+          curl -s https://raw.githubusercontent.com/aquasecurity/tfsec/master/scripts/install_linux.sh | bash
+
+      - id: format
+        name: Format checks
+        working-directory: src/infrastructure
+        run: terraform fmt -check -recursive
+
+      - id: security
+        name: Run TFSec
+        working-directory: src/infrastructure
+        run: tfsec .
