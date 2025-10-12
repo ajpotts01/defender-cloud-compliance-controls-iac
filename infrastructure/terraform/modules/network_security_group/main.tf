@@ -1,13 +1,13 @@
 # --- Network Security Groups
 
+# Note: public ingress security checks ignored at this time
+# The Microsoft lab is prescribing these being open.
+#tfsec:ignore:azure-network-no-public-ingress:tfsec:ignore:azure-network-disable-rdp-from-internet
 resource "azurerm_network_security_group" "project_nsg" {
   name                = "nsg-${var.app_name}-${terraform.workspace}-1"
   location            = var.region
   resource_group_name = var.resource_group
 
-  # Note: public ingress security checks ignored at this time
-  # The Microsoft lab is prescribing these being open.
-  #tfsec:ignore:azure-network-no-public-ingress  
   security_rule {
     name                                       = "allow-web-all"
     access                                     = "Allow"
@@ -20,7 +20,6 @@ resource "azurerm_network_security_group" "project_nsg" {
     priority                                   = 100
   }
 
-  #tfsec:ignore:azure-network-no-public-ingress:tfsec:ignore:azure-network-disable-rdp-from-internet
   security_rule {
     name                                       = "allow-rdp-all"
     access                                     = "Allow"
