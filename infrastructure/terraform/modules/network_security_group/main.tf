@@ -25,7 +25,7 @@ resource "azurerm_network_security_group" "project_nsg" {
     name                                       = "allow-rdp-all"
     access                                     = "Allow"
     direction                                  = "Inbound"
-    source_address_prefix                      = "*" 
+    source_address_prefix                      = "*"
     source_port_range                          = "*"
     destination_application_security_group_ids = [var.asgs["mgmt_security_group"]]
     destination_port_range                     = "3389"
