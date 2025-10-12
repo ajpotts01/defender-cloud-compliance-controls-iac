@@ -15,5 +15,10 @@ variable "resource_group" {
 
 variable "subnets" {
   type        = map(string)
-  description = "Subnet ID to apply network security group(s) to"
+  description = "Subnets to apply network security group(s) to"
+}
+
+variable "asgs" {
+  type        = map(string)
+  description = "Application security groups"
 }
