@@ -12,3 +12,8 @@ variable "resource_group" {
   type        = string
   description = "Name of the resource group to create virtual networks in"
 }
+
+variable "subnets" {
+  type        = map(string)
+  description = "Subnet ID to apply network security group(s) to"
+}

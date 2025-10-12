@@ -17,3 +17,11 @@ module "application_security_group" {
   app_name       = var.app_name
   resource_group = module.resource_group.resource_group_name
 }
+
+module "network_security_group" {
+  source         = "./modules/network_security_group"
+  region         = var.region
+  app_name       = var.app_name
+  resource_group = module.resource_group.resource_group_name
+  subnets        = module.virtual_network.subnets
+}

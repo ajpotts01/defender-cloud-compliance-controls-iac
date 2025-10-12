@@ -1,3 +1,5 @@
+# --- Application Security Groups
+
 resource "azurerm_application_security_group" "web_security_group" {
   name                = "asg-${var.app_name}-${terraform.workspace}-web"
   location            = var.region
