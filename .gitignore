@@ -1,3 +1,5 @@
+infrastructure/terraform/deployment/
+
 # Local .terraform directories
 .terraform/
 
