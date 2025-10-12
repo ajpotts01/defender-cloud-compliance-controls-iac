@@ -37,10 +37,10 @@ jobs:
 
       - id: format
         name: Format checks
-        working-directory: src/infrastructure
+        working-directory: infrastructure/terraform
         run: terraform fmt -check -recursive
 
       - id: security
         name: Run TFSec
-        working-directory: src/infrastructure
+        working-directory: infrastructure/terraform
         run: tfsec .
