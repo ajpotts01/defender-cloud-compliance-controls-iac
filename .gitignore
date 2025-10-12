@@ -1,3 +1,6 @@
+infrastructure/terraform/export/
+infrastructure/terraform/deployment/
+
 # Local .terraform directories
 .terraform/
 
