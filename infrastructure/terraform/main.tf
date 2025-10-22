@@ -26,3 +26,12 @@ module "network_security_group" {
   subnets        = module.virtual_network.subnets
   asgs           = module.application_security_group.application_security_groups
 }
+
+module "virtual_machine" {
+  source         = "./modules/virtual_machine"
+  region         = var.region
+  app_name       = var.app_name
+  resource_group = module.resource_group.resource_group_name
+  subnets        = module.virtual_network.subnets
+  asgs           = module.application_security_group.application_security_groups
+}
