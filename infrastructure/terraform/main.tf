@@ -37,8 +37,9 @@ module "virtual_machine" {
 }
 
 module "log_analytics" {
-  source         = "./modules/log_analytics"
-  region         = var.region
-  app_name       = var.app_name
-  resource_group = module.resource_group.resource_group_name
+  source           = "./modules/log_analytics"
+  region           = var.region
+  app_name         = var.app_name
+  resource_group   = module.resource_group.resource_group_name
+  virtual_machines = module.virtual_machine.virtual_machines
 }

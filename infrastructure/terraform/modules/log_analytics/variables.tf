@@ -12,3 +12,8 @@ variable "resource_group" {
   type        = string
   description = "Name of the resource group to create virtual networks in"
 }
+
+variable "virtual_machines" {
+  type        = list(string)
+  description = "VMs to assign log collection to"
+}
