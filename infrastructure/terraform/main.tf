@@ -35,3 +35,10 @@ module "virtual_machine" {
   subnets        = module.virtual_network.subnets
   asgs           = module.application_security_group.application_security_groups
 }
+
+module "log_analytics" {
+  source         = "./modules/log_analytics"
+  region         = var.region
+  app_name       = var.app_name
+  resource_group = module.resource_group.resource_group_name
+}
