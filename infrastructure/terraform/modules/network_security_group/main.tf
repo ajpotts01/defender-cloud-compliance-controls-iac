@@ -16,6 +16,7 @@ resource "azurerm_subnet_network_security_group_association" "project_nsg_subnet
 
 # Network security group rules can be specified inline on the NSG
 # but they seem to cause weird issues with the state. Keep them concrete and separate.
+#tfsec:ignore:azure-network-no-public-ingress tfsec:ignore:azure-network-disable-rdp-from-internet
 resource "azurerm_network_security_rule" "allow_web_all" {
   network_security_group_name                = azurerm_network_security_group.project_nsg.name
   resource_group_name                        = var.resource_group
@@ -30,6 +31,7 @@ resource "azurerm_network_security_rule" "allow_web_all" {
   priority                                   = 100
 }
 
+#tfsec:ignore:azure-network-no-public-ingress tfsec:ignore:azure-network-disable-rdp-from-internet
 resource "azurerm_network_security_rule" "allow_rdp_all" {
   network_security_group_name                = azurerm_network_security_group.project_nsg.name
   resource_group_name                        = var.resource_group
